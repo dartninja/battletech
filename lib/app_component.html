@@ -1,0 +1,34 @@
+
+<table>
+<tr>
+    <th>Name</th>
+    <td><material-input [(ngModel)]="char.name" ></material-input></td>
+</tr>
+    <tr>
+        <th>Remaining XP</th>
+        <td>{{char.remainingXP}}</td>
+    </tr>
+
+<table>
+    <tr>
+    <th>Attributes</th><th>Score</th><th>XP</th>
+    </tr>
+    <tr *ngFor="let attr of char.attributes.keys">
+        <th>
+            {{attr.name}}
+        </th>
+        <td>{{char.attributes[attr].score}}</td>
+        <td>{{char.attributes[attr].XP}}</td>
+    </tr>
+</table>
+
+    <table>
+        <tr><th>Skills</th><th>Level</th><th>XP</th></tr>
+        <tr *ngFor="let skill of char.skills.keys">
+            <th style="text-align:left;">{{skill.fullName}}</th>
+            <td>{{char.skills[skill].level}}</td>
+            <td>{{char.skills[skill].XP}}</td>
+        </tr>
+
+    </table>
+</table>
