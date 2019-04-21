@@ -1,34 +1,94 @@
-
-<table>
-<tr>
-    <th>Name</th>
-    <td><material-input [(ngModel)]="char.name" ></material-input></td>
-</tr>
+<!--<table>
+    <tr>
+        <th>Name</th>
+        <td><material-input [(ngModel)]="char.name" ></material-input></td>
+    </tr>
     <tr>
         <th>Remaining XP</th>
         <td>{{char.remainingXP}}</td>
     </tr>
+</table>-->
+<material-tab-panel class="tab-panel" [activeTabIndex]="0">
+    <material-tab label="Biography">
+        <table>
+            <tr><td>
+                <h2>Affiliation</h2>
+            <material-dropdown-select
+                buttonText="{{selectedAffiliation?.name??'Select...'}}"
+                [(selection)]="selectedAffiliation"
+                [options]="affiliations">
+            </material-dropdown-select>
+            </td></tr>
+            <tr  *ngIf="showSecondaryLanguage"><td>
+            <h3>Secondary Language</h3>
+            <material-dropdown-select
+                    buttonText="{{char.startingSecondaryLanguage?.name??'Select...'}}"
+                    [(selection)]="char.startingSecondaryLanguage"
+                    [options]="languages">
+            </material-dropdown-select>
+            </td></tr>
+            <tr><td>
 
-<table>
-    <tr>
-    <th>Attributes</th><th>Score</th><th>XP</th>
-    </tr>
-    <tr *ngFor="let attr of char.attributes.keys">
-        <th>
-            {{attr.name}}
-        </th>
-        <td>{{char.attributes[attr].score}}</td>
-        <td>{{char.attributes[attr].XP}}</td>
-    </tr>
-</table>
+            <div *ngFor="let choice  of affiliationTraitChoices">
 
-    <table>
-        <tr><th>Skills</th><th>Level</th><th>XP</th></tr>
-        <tr *ngFor="let skill of char.skills.keys">
-            <th style="text-align:left;">{{skill.fullName}}</th>
-            <td>{{char.skills[skill].level}}</td>
-            <td>{{char.skills[skill].XP}}</td>
-        </tr>
+                <material-dropdown-select
+                        buttonText="{{char.affiliationOptions.selectedTraits[choice]?.toString()??'Select a trait'}}"
+                        [(selection)]="char.affiliationOptions.selectedTraits[choice]"
+                        [options]="choice.choices" >
+                </material-dropdown-select>
+            </div>
+            </td></tr>
+            <tr *ngIf="showSubAffiliation"><td >
 
-    </table>
-</table>
+            <h2>Sub Affiliation</h2>
+        <material-dropdown-select
+                buttonText="{{char.subAffiliation?.name??'Select a sub affiliation'}}"
+                [(selection)]="char.subAffiliation"
+                [options]="subAffiliations" >
+        </material-dropdown-select>
+
+            </td></tr>
+
+
+        </table>
+
+    </material-tab>
+    <material-tab label="Sheet">
+        <table>
+            <tr>
+                <th>Attributes</th><th>Score</th><th>XP</th>
+            </tr>
+            <tr *ngFor="let attr of char.attributes.keys">
+                <th>
+                    {{attr.name}}
+                </th>
+                <td>{{char.attributes[attr].score}}</td>
+                <td>{{char.attributes[attr].XP}}</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr><th>Skills</th><th>Level</th><th>XP</th></tr>
+            <tr *ngFor="let skill of char.skills.keys">
+                <th style="text-align:left;">{{skill?.fullName}}</th>
+                <td>{{char.skills[skill]?.level}}</td>
+                <td>{{char.skills[skill]?.XP}}</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr><th>Traits</th><th>TP</th><th>Page Ref.</th><th>XP</th></tr>
+            <tr *ngFor="let trait of char.traits.keys">
+                <th style="text-align:left;">
+                    {{char.traits[trait].toString()}}
+                </th>
+                <td>{{char.traits[trait]?.TP}}</td>
+                <td></td>
+                <td>{{char.traits[trait]?.XP}}</td>
+            </tr>
+        </table>
+    </material-tab>
+</material-tab-panel>
+<pre>
+{{exportData}}
+</pre>
