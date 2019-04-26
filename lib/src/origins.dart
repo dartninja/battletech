@@ -3,63 +3,33 @@ import 'package:battletech/src/attributes.dart';
 import 'traits.dart';
 import 'package:quiver/collection.dart';
 
+const int secondaryLanguageBoost = 20;
+
 class Package {
+  final String id;
+  final String name;
+
   final int cost;
+
+  final List<Package> requiredPackages;
   final Map<Attribute, int> bonusAttributes;
-  final Map<Skill, int> bonusSkills;
+  final Map<ASkill, int> bonusSkills;
   final Map<ATrait, int> bonusTraits;
 
 
-  const Package(this.cost, {this.bonusAttributes=const{}, this.bonusSkills=const {}, this.bonusTraits = const {}});
+  const Package(this.id, this.name, this.cost,
+      {this.requiredPackages=const[],
+        this.bonusAttributes=const{},
+        this.bonusSkills=const {},
+        this.bonusTraits = const {}});
 }
 
-class Affiliation extends Package {
-  final String id;
-  final String name;
-  final List<Skill> secondaryLanguages;
 
-
-  const Affiliation(this.id, this.name, this.secondaryLanguages, int cost,
-      {Map<Attribute, int> bonusAttributes=const{}, Map<Skill, int> bonusSkills=const{},
-      Map<ATrait, int> bonusTraits=const{}})
-      : super(cost, bonusAttributes: bonusAttributes, bonusSkills: bonusSkills, bonusTraits: bonusTraits);
-
-  String toJson() => id;
-
-  static Affiliation fromJson(String value) => allAffiliations.keys.firstWhere((e)=>e.id==value,orElse: () => null);
-  String toString() => this.name;
-}
-
-class SubAffiliation extends Package {
-  final String id;
-  final String name;
-  final Affiliation affiliation;
-  const SubAffiliation(this.id, this.name, this.affiliation,
-      {Map<Attribute, int> bonusAttributes, Map<Skill, int> bonusSkills,
-      Map<ATrait, int> bonusTraits=const{}})
-      : super(0, bonusAttributes: bonusAttributes, bonusSkills: bonusSkills, bonusTraits: bonusTraits);
-
-  String get fullName => affiliation.name + "/" + name;
-  String toJson() => id;
-
-  static SubAffiliation fromJson(String value) {
-    for(var aff in allAffiliations.values) {
-      for(var subAff in aff) {
-        if(subAff.id==value)
-          return subAff;
-
-      }
-    }
-    return null;
-  }
-  String toString() => this.name;
-
-}
-
-class AffiliationOptions  {
+class PackageOptions  {
   final Map<TraitChoice, ATrait> selectedTraits = {};
+  final Map<Skill, ASkill> selectedSkills = {};
 
-  AffiliationOptions();
+  PackageOptions();
 
   Map toJson() {
     var output = {};
@@ -69,26 +39,35 @@ class AffiliationOptions  {
       output["traits"][choice.id] = chosen;
     }
 
+    output["skills"] = {};
+    for(var choice in selectedSkills.keys) {
+      ASkill chosen = selectedSkills[choice];
+      output["skills"][choice.id] = chosen;
+    }
+
     return output;
   }
 }
 
 
-const Affiliation davion = const Affiliation("davion", "Davion",
-    [languageFrench, languageGerman, languageHindi, languageRussian],
-    150,
-    bonusSkills: {protocolFedSuns: 10},
-    bonusTraits: { const TraitChoice("davionAptitude",[
+const Package davionAffiliation = const Package("davionAffiliation", "Davion", 150,
+    bonusSkills: const <ASkill,int>{
+      protocolFedSuns: 10,
+      const SkillChoice("secondaryLanguage", const [languageFrench, languageGerman, languageHindi, languageRussian]): secondaryLanguageBoost
+    },
+    bonusTraits: const <ATrait,int>{ const TraitChoice("davionAptitude",[
       const TraitParameterInstance<Skill>(naturalAptitude, protocol),
       const TraitParameterInstance<Skill>(naturalAptitude, strategy),
     ]): 100 });
 
-const SubAffiliation draconisMarch = const SubAffiliation(
-    "draconisMarch", "Draconis March", davion,
+const Package draconisMarch = const Package(
+    "draconisMarch", "Draconis March", 0,
+    requiredPackages: const [davionAffiliation],
     bonusAttributes: {edge: 25},
-    bonusTraits: {connections: 20}
+    bonusTraits: {
+      connections: 20,
+      compulsionHatredOfDraconis: -30
+    },
+  bonusSkills: { arts: 10}
 );
 
-const Map<Affiliation, List<SubAffiliation>> allAffiliations = {
-  davion: [draconisMarch]
-};

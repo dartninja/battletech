@@ -2,19 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dd2a8c5-b8bd-4c38-bf64-f660df8f6fba" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/src/shared.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/components/character_sheet/character_sheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/components/character_sheet/character_sheet.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/components/character_sheet/character_sheet.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/components/components.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/components/package_picker/package_picker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/components/package_picker/package_picker.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/components/package_picker/package_picker.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/components/skill_picker/skill_picker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/components/skill_picker/skill_picker.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/components/skill_picker/skill_picker.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/app_component.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app_component.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/app_component.html" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app_component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/attributes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/attributes.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/character.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/character.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/origins.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/origins.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/shared.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/shared.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/skills.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/skills.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/traits.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/traits.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,10 +30,38 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/src/components/package_picker/package_picker.css">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/src/components/package_picker/package_picker.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="750">
+              <caret line="33" selection-start-line="33" selection-end-line="33" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/src/character.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="393">
+              <caret line="68" column="34" selection-start-line="68" selection-start-column="16" selection-end-line="68" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/src/origins.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="67" column="43" lean-forward="true" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
+            <state>
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -37,10 +70,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/src/traits.dart">
+        <entry file="file://$PROJECT_DIR$/lib/src/skills.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="721">
-              <caret line="51" selection-start-line="51" selection-end-line="51" />
+            <state relative-caret-position="692">
+              <caret line="186" lean-forward="true" selection-start-line="186" selection-end-line="186" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -49,45 +82,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/src/skills.dart">
+        <entry file="file://$PROJECT_DIR$/lib/src/traits.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="29">
-              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+            <state relative-caret-position="406">
+              <caret line="33" selection-start-line="27" selection-end-line="33" />
               <folding>
-                <element signature="e#0#25#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/app_component.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="721">
-              <caret line="58" column="45" selection-start-line="58" selection-start-column="45" selection-end-line="58" selection-end-column="45" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/src/shared.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/src/character.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="84" column="35" lean-forward="true" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#0#40#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -107,10 +107,17 @@
       <find>.fullN</find>
       <find>/</find>
       <find>affili</find>
+      <find>subskill</find>
+      <find>instance</find>
+      <find>.name</find>
+      <find>subsk</find>
+      <find>extends As</find>
+      <find>seconda</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -120,12 +127,21 @@
         <option value="$PROJECT_DIR$/lib/src/origins/origins.dart" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
         <option value="$PROJECT_DIR$/lib/src/attributes.dart" />
-        <option value="$PROJECT_DIR$/lib/src/skills.dart" />
-        <option value="$PROJECT_DIR$/lib/app_component.html" />
         <option value="$PROJECT_DIR$/lib/src/shared.dart" />
-        <option value="$PROJECT_DIR$/lib/src/origins.dart" />
         <option value="$PROJECT_DIR$/lib/src/traits.dart" />
+        <option value="$PROJECT_DIR$/lib/skill_picker/skill_picker.dart" />
+        <option value="$PROJECT_DIR$/lib/skill_picker/skill_picker.html" />
+        <option value="$PROJECT_DIR$/lib/character_sheet/character_sheet.html" />
+        <option value="$PROJECT_DIR$/lib/character_sheet/character_sheet.dart" />
+        <option value="$PROJECT_DIR$/lib/src/components/components.dart" />
+        <option value="$PROJECT_DIR$/lib/src/components/character_sheet/character_sheet.dart" />
         <option value="$PROJECT_DIR$/lib/app_component.dart" />
+        <option value="$PROJECT_DIR$/lib/app_component.html" />
+        <option value="$PROJECT_DIR$/lib/src/components/skill_picker/skill_picker.html" />
+        <option value="$PROJECT_DIR$/lib/src/components/skill_picker/skill_picker.dart" />
+        <option value="$PROJECT_DIR$/lib/src/components/package_picker/package_picker.dart" />
+        <option value="$PROJECT_DIR$/lib/src/skills.dart" />
+        <option value="$PROJECT_DIR$/lib/src/origins.dart" />
         <option value="$PROJECT_DIR$/lib/src/character.dart" />
       </list>
     </option>
@@ -134,10 +150,10 @@
     <servers />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="195" />
-    <option name="y" value="393" />
-    <option name="width" value="2031" />
-    <option name="height" value="1494" />
+    <option name="x" value="212" />
+    <option name="y" value="104" />
+    <option name="width" value="2136" />
+    <option name="height" value="1160" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -145,6 +161,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -166,6 +183,37 @@
             <path>
               <item name="battletech" type="b2602c69:ProjectViewProjectNode" />
               <item name="battletech" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="battletech" type="b2602c69:ProjectViewProjectNode" />
+              <item name="battletech" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="character_sheet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="battletech" type="b2602c69:ProjectViewProjectNode" />
+              <item name="battletech" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="package_picker" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="battletech" type="b2602c69:ProjectViewProjectNode" />
+              <item name="battletech" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="skill_picker" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="battletech" type="b2602c69:ProjectViewProjectNode" />
+              <item name="battletech" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -177,7 +225,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -185,10 +232,18 @@
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/src" />
+      <recent name="$PROJECT_DIR$/lib/components" />
       <recent name="D:\Source\dartlery\battletech\lib\src" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/src/components" />
+      <recent name="$PROJECT_DIR$/lib/character_sheet" />
+      <recent name="$PROJECT_DIR$/lib/skill_picker" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -221,35 +276,60 @@
       <workItem from="1555793348714" duration="10357000" />
       <workItem from="1555811219084" duration="41000" />
       <workItem from="1555812578946" duration="16880000" />
-      <workItem from="1555855985894" duration="3055000" />
+      <workItem from="1555855985894" duration="3176000" />
+      <workItem from="1555872120944" duration="3752000" />
+      <workItem from="1555888647169" duration="6353000" />
+      <workItem from="1555896593762" duration="467000" />
+      <workItem from="1555897895689" duration="1413000" />
+      <workItem from="1555952745000" duration="2154000" />
+      <workItem from="1556061503055" duration="2762000" />
+      <workItem from="1556076291736" duration="2744000" />
+      <workItem from="1556162778931" duration="3762000" />
+      <workItem from="1556234070146" duration="3418000" />
     </task>
+    <task id="LOCAL-00001" summary="Lots of work on traits">
+      <created>1555859141287</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1555859141287</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30333000" />
+    <option name="totallyTimeSpent" value="57279000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="53" width="2400" height="1547" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22943723" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27056277" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Dart Analysis" order="7" weight="0.32908458" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32908458" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="12" />
-      <window_info anchor="bottom" id="Dart Dev Server" order="13" visible="true" weight="0.33151752" />
-      <window_info anchor="bottom" id="Messages" order="14" weight="0.2303502" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="5" weight="0.3299611" />
+      <window_info anchor="bottom" id="Dart Analysis" order="6" weight="0.32840466" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32908458" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.2303502" />
+      <window_info anchor="bottom" id="Debug" order="13" weight="0.4" />
+      <window_info anchor="bottom" id="Dart Dev Server" order="14" visible="true" weight="0.33151752" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -258,6 +338,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Lots of work on traits" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lots of work on traits" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/web/main.dart">
@@ -302,68 +386,134 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/app_component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="32" column="16" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
-          <folding>
-            <element signature="n#style#0;n#th#0;n#tr#1;n#table#1;n#material-tab#1;n#material-tab-panel#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#0;n#tr#1;n#table#2;n#material-tab#1;n#material-tab-panel#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/shared.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+        <state relative-caret-position="232">
+          <caret line="8" column="38" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/origins.dart">
+    <entry file="file://$PROJECT_DIR$/lib/src/components/skill_picker/skill_picker.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="67" column="43" lean-forward="true" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="87">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/skills.dart">
+    <entry file="file://$PROJECT_DIR$/lib/src/components/character_sheet/character_sheet.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/angular-5.2.0/lib/src/core/change_detection/host.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="151" column="14" selection-start-line="151" selection-start-column="14" selection-end-line="151" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="http://localhost:53322/packages/$sdk/dev_compiler/amd/dart_sdk.js">
+      <provider selected="true" editor-type-id="httpFileEditor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/components/components.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="29">
-          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/traits.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="721">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
+          <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/app_component.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="721">
-          <caret line="58" column="45" selection-start-line="58" selection-start-column="45" selection-end-line="58" selection-end-column="45" />
+          <caret line="69" column="1" lean-forward="true" selection-start-line="69" selection-start-column="1" selection-end-line="69" selection-end-column="1" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/components/character_sheet/character_sheet.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/components/character_sheet/character_sheet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="957">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="n#style#0;n#th#0;n#tr#1;n#table#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#tr#1;n#table#2;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/app_component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1322">
+          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/components/skill_picker/skill_picker.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/components/skill_picker/skill_picker.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/components/package_picker/package_picker.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/components/package_picker/package_picker.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/traits.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="33" selection-start-line="27" selection-end-line="33" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/skills.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="692">
+          <caret line="186" lean-forward="true" selection-start-line="186" selection-end-line="186" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/origins.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/character.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="84" column="35" lean-forward="true" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
+        <state relative-caret-position="393">
+          <caret line="68" column="34" selection-start-line="68" selection-start-column="16" selection-end-line="68" selection-end-column="34" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

@@ -8,6 +8,7 @@
         <td>{{char.remainingXP}}</td>
     </tr>
 </table>-->
+<material-button (trigger)="resetButtonTrigger">Reset</material-button>
 <material-tab-panel class="tab-panel" [activeTabIndex]="0">
     <material-tab label="Biography">
         <table>
@@ -22,7 +23,7 @@
             <tr  *ngIf="showSecondaryLanguage"><td>
             <h3>Secondary Language</h3>
             <material-dropdown-select
-                    buttonText="{{char.startingSecondaryLanguage?.name??'Select...'}}"
+                    buttonText="{{char.startingSecondaryLanguage?.fullName??'Select...'}}"
                     [(selection)]="char.startingSecondaryLanguage"
                     [options]="languages">
             </material-dropdown-select>
@@ -54,39 +55,7 @@
 
     </material-tab>
     <material-tab label="Sheet">
-        <table>
-            <tr>
-                <th>Attributes</th><th>Score</th><th>XP</th>
-            </tr>
-            <tr *ngFor="let attr of char.attributes.keys">
-                <th>
-                    {{attr.name}}
-                </th>
-                <td>{{char.attributes[attr].score}}</td>
-                <td>{{char.attributes[attr].XP}}</td>
-            </tr>
-        </table>
-
-        <table>
-            <tr><th>Skills</th><th>Level</th><th>XP</th></tr>
-            <tr *ngFor="let skill of char.skills.keys">
-                <th style="text-align:left;">{{skill?.fullName}}</th>
-                <td>{{char.skills[skill]?.level}}</td>
-                <td>{{char.skills[skill]?.XP}}</td>
-            </tr>
-        </table>
-
-        <table>
-            <tr><th>Traits</th><th>TP</th><th>Page Ref.</th><th>XP</th></tr>
-            <tr *ngFor="let trait of char.traits.keys">
-                <th style="text-align:left;">
-                    {{char.traits[trait].toString()}}
-                </th>
-                <td>{{char.traits[trait]?.TP}}</td>
-                <td></td>
-                <td>{{char.traits[trait]?.XP}}</td>
-            </tr>
-        </table>
+        <character-sheet [character]="char"></character-sheet>
     </material-tab>
 </material-tab-panel>
 <pre>

@@ -31,23 +31,24 @@ class Character {
     return output;
   }
 
-  Skill startingSecondaryLanguage;
+  SubSkill<Language> startingSecondaryLanguage;
 
 
-  Affiliation get affiliation => subAffiliation?.affiliation;
-  AffiliationOptions affiliationOptions = new AffiliationOptions();
-  SubAffiliation subAffiliation;
-  AffiliationOptions subAffiliationOptions = new AffiliationOptions();
+  List<Package> lifePackages = <Package>[];
+  List<PackageOptions> lifePackageOptions = <PackageOptions>[];
 
+  LearningSpeed learningSpeed = LearningSpeed.Normal;
 
   AttributeSet get attributes {
     AttributeSet output = new AttributeSet();
     for (Attribute attr in allAttributes) {
       output.addXP(attr, 100);
     }
-    if (subAffiliation?.bonusAttributes != null) {
-      for (Attribute attr in subAffiliation.bonusAttributes.keys) {
-        output.addXP(attr, subAffiliation.bonusAttributes[attr]);
+    for(var package in lifePackages) {
+      if (package ?.bonusAttributes != null) {
+        for (Attribute attr in package .bonusAttributes.keys) {
+          output.addXP(attr, package .bonusAttributes[attr]);
+        }
       }
     }
 
@@ -61,12 +62,20 @@ class Character {
       output.addXP(startingSecondaryLanguage, 20);
     output.addXP(perception, 10);
 
-    if (subAffiliation?.bonusSkills != null) {
-      for (Skill skill in subAffiliation.bonusSkills.keys) {
-        output.addXP(skill, subAffiliation.bonusSkills[skill]);
+    for(var package in lifePackages) {
+      if (package?.bonusSkills != null) {
+        for (var skill in package .bonusSkills.keys) {
+          if (skill.requiresChoice) {
+            if (affiliationOptions.selectedSkills.containsKey(skill)) {
+              output.addXP(affiliationOptions.selectedSkills[skill],
+                  package .bonusSkills[skill]);
+            }
+          } else {
+            output.addXP(skill, package .bonusSkills[skill]);
+          }
+        }
       }
     }
-
     return output;
   }
 
@@ -75,32 +84,20 @@ class Character {
   TraitSet get traits{
     TraitSet output = new TraitSet();
 
-    if(affiliation?.bonusTraits!=null) {
-      for(var trait in affiliation.bonusTraits.keys) {
-
-        if(trait is TraitChoice) {
-          if(affiliationOptions.selectedTraits.containsKey(trait)) {
-            output.addXP(affiliationOptions.selectedTraits[trait], affiliation.bonusTraits[trait]);
+    for(var package in lifePackages) {
+      if (package ?.bonusTraits != null) {
+        for (var trait in package .bonusTraits.keys) {
+          if (trait is TraitChoice) {
+            if (affiliationOptions.selectedTraits.containsKey(trait)) {
+              output.addXP(affiliationOptions.selectedTraits[trait],
+                  package .bonusTraits[trait]);
+            }
+          } else if (trait is Trait) {
+            output.addXP(trait, package .bonusTraits[trait]);
+          } else {
+            throw new Exception(
+                "ATrait type not supported: ${trait.runtimeType.toString()}");
           }
-        } else if(trait is Trait) {
-          output.addXP(trait, affiliation.bonusTraits[trait]);
-        } else {
-          throw new Exception("ATrait type not supported: ${trait.runtimeType.toString()}");
-        }
-
-      }
-    }
-
-    if (subAffiliation?.bonusTraits!= null) {
-      for (var trait in subAffiliation.bonusTraits.keys) {
-        if(trait is TraitChoice) {
-          if(subAffiliationOptions.selectedTraits.containsKey(trait)) {
-            output.addXP(subAffiliationOptions.selectedTraits[trait], subAffiliation.bonusTraits[trait]);
-          }
-        } else if(trait is Trait) {
-          output.addXP(trait, subAffiliation.bonusTraits[trait]);
-        } else {
-          throw new Exception("ATrait type not supported: ${trait.runtimeType.toString()}");
         }
       }
     }
@@ -112,14 +109,8 @@ class Character {
 
   Map<String,dynamic> toJson() => {
     _ageField: age,
-    _startingSecondaryLanguageField: startingSecondaryLanguage,
-    _affiliationOptionsField: affiliationOptions,
-    _subAffiliationField: subAffiliation
-
+    _packagesField: lifePackages,
   };
   static const String _ageField = "age";
-  static const String _startingSecondaryLanguageField = "startingSecondaryLanguage";
-  static const String _affiliationField = "affiliation";
-  static const String _affiliationOptionsField = "affiliationOptions";
-  static const String _subAffiliationField = "subAffiliation";
+  static const String _packagesField = "packages";
 }

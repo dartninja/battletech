@@ -1,5 +1,14 @@
-import 'dart:collection';
 import 'package:quiver/collection.dart';
+import 'attributes.dart';
+import 'traits.dart';
+import 'shared.dart';
+
+enum SkillActionRating {
+  S,C
+}
+enum SkillTrainingRating {
+  B,A
+}
 
 const Map<int, int> standardSkillLearnRates = {
   0: 20,
@@ -15,32 +24,69 @@ const Map<int, int> standardSkillLearnRates = {
   10: 570
 };
 
-class SkillSet extends DelegatingMap<Skill, SkillValue> {
-  final Map<Skill, SkillValue> _l = <Skill, SkillValue>{};
+class SkillSet extends DelegatingList<SkillInstance> {
+  final List<SkillInstance> _l = <SkillInstance>[];
 
-  Map<Skill, SkillValue> get delegate => _l;
+  List<SkillInstance> get delegate => _l;
 
-  void addXP(Skill skill, int xp) {
-    SkillValue value;
-    if (_l.containsKey(skill)) {
-      value = _l[skill];
-    } else {
-      value = new SkillValue();
-      _l[skill] = value;
-    }
-    value.XP += xp;
+  SkillInstance find(ASkill skill) {
+    return this.firstWhere((e)=>e.skill==skill, orElse: () => null);
   }
+
+  void addXP(ASkill skill, int xp) {
+    var instance = this.find(skill);
+
+    if (instance==null) {
+      instance = new SkillInstance(skill);
+      this.add(instance);
+    }
+    instance.xp += xp;
+  }
+
 }
 
-class Skill {
+abstract class ASkill {
+//  String get fullName;
+//  bool get tiered;
+  bool get requiresChoice;
+
+  const ASkill();
+}
+
+class Skill<T> extends ASkill {
   final String id;
   final String name;
-  final Skill generalSkill;
+  final SkillActionRating _actionRating;
+  final SkillTrainingRating _trainingRating;
+  final List<Attribute> _linkedAttributes;
+  final List<T> subSkills;
+  final bool freeFormSubSkill;
 
-  const Skill(this.id, this.name, [this.generalSkill = null]);
+
+  final int _targetNumber;
+
+  bool get tiered => _advancedTargetNumber!=null;
+  bool get requiresChoice => freeFormSubSkill||subSkills.isNotEmpty;
+
+  const Skill(this.id, this.name, this._targetNumber, this._actionRating, this._trainingRating,
+      this._linkedAttributes, {this.subSkills, this.freeFormSubSkill = false}):
+        _advancedTargetNumber = null,
+        _advancedLinkedAttributes = null,
+        _advancedActionRating = null;
+
+  final int _advancedTargetNumber;
+  final SkillActionRating _advancedActionRating;
+  final List<Attribute> _advancedLinkedAttributes;
+
+
+  const Skill.Tiered(this.id, this.name,
+      this._targetNumber, this._actionRating, this._linkedAttributes,
+      this._advancedTargetNumber, this._advancedActionRating, this._advancedLinkedAttributes
+      , {this.subSkills, this.freeFormSubSkill = false}):
+      _trainingRating = SkillTrainingRating.B;
+
 
   String get fullName {
-    if (generalSkill != null) return generalSkill.fullName + "/" + this.name;
     return this.name;
   }
 
@@ -51,58 +97,153 @@ class Skill {
   }
 
   String toString() => this.fullName;
+
+}
+
+class SubSkill<T> extends ASkill {
+  final Skill<T> skill;
+  final T subSkill;
+
+  bool get requiresChoice => skill.requiresChoice;
+
+
+  bool get tiered => skill.tiered;
+
+  String get fullName => skill.fullName + "/" + enumToString(subSkill);
+
+  const SubSkill(this.skill, this.subSkill);
+
+  String toString() => fullName;
+
+  Map toJson() => {skillField: skill, subSkillField: enumToString(subSkill)};
+
+  static const String skillField = "skill";
+  static const String subSkillField = "subSkill";
+}
+
+class SkillChoice  extends ASkill {
+  final String id;
+  final List<ASkill> choices;
+
+  bool get requiresChoice => true;
+
+  const SkillChoice(this.id, this.choices);
+
+  String toJson() => this.id;
+}
+
+class SkillInstance {
+  final ASkill skill;
+  final String specialty;
+
+  int xp = 0;
+
+  int getTargetNumber(LearningSpeed learnRate) {
+    if(skill is Skill) {
+      Skill sk = skill as Skill;
+      if (sk.tiered) {
+        if (calculateLevel(learnRate) <= 3) {
+          return sk._targetNumber;
+        } else {
+          return sk._advancedTargetNumber;
+        }
+      } else {
+        return sk._targetNumber;
+      }
+    }
+  }
+
+  SkillInstance(this.skill, {this.specialty});
+
+  int calculateLevel(LearningSpeed learnRate) {
+    var learningScale;
+    switch(learnRate) {
+      case LearningSpeed.Normal:
+        learningScale = standardSkillLearnRates;
+        break;
+      default:
+        throw new Exception("Learning speed not supported: $learnRate");
+    }
+
+    int candidateLevel;
+    for (int key in learningScale.keys) {
+      if (learningScale[key] <= xp) {
+        candidateLevel = key;
+      } else {
+        break;
+      }
+    }
+
+    return candidateLevel;
+  }
+
+  String toString() {
+    if((specialty??"").isEmpty) {
+      return skill.toString();
+    } else {
+      return "${skill.toString()} ($specialty)";
+    }
+  }
+
 }
 
 class SkillValue {
   final Map<int, int> learnRate;
-
-  int get level {
-    int candidateLevel;
-    for (int key in learnRate.keys) {
-      if (learnRate[key] <= XP) {
-        candidateLevel = key;
-      } else {
-        return candidateLevel;
-      }
-    }
-    return null;
-  }
 
   int XP = 0;
 
   SkillValue({this.learnRate = standardSkillLearnRates, this.XP = 0});
 }
 
-const Skill language = const Skill("language", "Language");
-const Skill languageEnglish =
-const Skill("languageEnglish", "English", language);
-const Skill languageFrench =
-const Skill("languageFrench", "French", language);
-const Skill languageGerman =
-const Skill("languageGerman", "German", language);
-const Skill languageHindi =
-const Skill("languageHindi", "Hindi", language);
-const Skill languageRussian =
-const Skill("languageRussian", "Russian", language);
+const Skill<String> arts = const Skill<String>.Tiered("art", "Art",
+  8, SkillActionRating.C, [dexterity],
+  9, SkillActionRating.C, [dexterity, intelligence], freeFormSubSkill: true);
 
 
-const Skill perception = const Skill("perception", "Perception");
+enum Language {
+  English,
+  French,
+German,
+Hindi,
+Russian
+}
 
-const Skill protocol = const Skill("protocol", "Protocol");
-const Skill protocolFedSuns =
-    const Skill("protocolFedSuns", "Fedsuns", protocol);
+const Skill<Language> language = const Skill<Language>("language", "Language", 8,
+    SkillActionRating.S, SkillTrainingRating.A,
+    [intelligence, charisma], subSkills: [
+      Language.English,
+      Language.French,
+      Language.German,
+      Language.Hindi,
+      Language.Russian
+    ]);
+const SubSkill<Language> languageEnglish = const SubSkill<Language>(language, Language.English);
+const SubSkill<Language> languageFrench = const SubSkill<Language>(language, Language.French);
+const SubSkill<Language> languageGerman = const SubSkill<Language>(language, Language.German);
+const SubSkill<Language> languageHindi = const SubSkill<Language>(language, Language.Hindi);
+const SubSkill<Language> languageRussian = const SubSkill<Language>(language, Language.Russian);
 
-const Skill strategy = const Skill("strategy", "Strategy");
+
+const Skill perception = const Skill("perception", "Perception", 7, SkillActionRating.S, SkillTrainingRating.B,
+  [intelligence]);
+
+enum Protocol {
+  FedSuns
+}
+const Skill<Protocol> protocol = const Skill<Protocol>("protocol", "Protocol", 9, SkillActionRating.C, SkillTrainingRating.A,
+  [willpower, charisma], subSkills: [
+    Protocol.FedSuns
+  ]);
+const SubSkill<Protocol> protocolFedSuns = const SubSkill<Protocol>(protocol, Protocol.FedSuns);
+
+
+const Skill strategy = const Skill("strategy", "Strategy", 9,SkillActionRating.C, SkillTrainingRating.A,
+  [intelligence,willpower]);
 
 
 const List<Skill> allSkills = const <Skill>[
-  languageEnglish,
-  languageFrench,
-  languageGerman,
-  languageHindi,
-  languageRussian,
+  language,
   perception,
-  protocolFedSuns
+  protocol,
+  strategy,
 ];
-
-Iterable<Skill> get allLanguageSkills => allSkills.where((e)=>e.generalSkill==language);

@@ -1,0 +1,33 @@
+<table>
+    <tr>
+        <th>Attributes</th><th>Score</th><th>XP</th>
+    </tr>
+    <tr *ngFor="let attr of char.attributes.keys">
+        <th>
+            {{attr.name}}
+        </th>
+        <td>{{char.attributes[attr].score}}</td>
+        <td>{{char.attributes[attr].XP}}</td>
+    </tr>
+</table>
+
+<table>
+    <tr><th>Skills</th><th>Level</th><th>XP</th></tr>
+    <tr *ngFor="let skill of char.skills">
+        <th style="text-align:left;">{{skill?.fullName}}</th>
+        <td>{{skill?.calculateLevel(char.learningSpeed)}}</td>
+        <td>{{skill.xp}}</td>
+    </tr>
+</table>
+
+<table>
+    <tr><th>Traits</th><th>TP</th><th>Page Ref.</th><th>XP</th></tr>
+    <tr *ngFor="let trait of char.traits.keys">
+        <th style="text-align:left;">
+            {{trait.toString()}}
+        </th>
+        <td>{{char.traits[trait]?.TP}}</td>
+        <td></td>
+        <td>{{char.traits[trait]?.XP}}</td>
+    </tr>
+</table>

@@ -4,6 +4,12 @@ import 'shared.dart';
 
 const int traitXPCost = 100;
 
+enum LearningSpeed {
+  Slow,
+  Normal,
+  Fast
+}
+
 abstract class ATrait {
   const ATrait();
 }
@@ -11,8 +17,7 @@ abstract class ATrait {
 class Trait extends ATrait {
   final String id;
   final String name;
-  final bool freeForm;
-  const Trait(this.id, this.name, {this.freeForm= false});
+  const Trait(this.id, this.name);
 
   String toString() => name;
 
@@ -37,8 +42,10 @@ class TraitOptionChoice<T> extends ATrait {
 
 class TraitWithParameter<T> extends Trait {
   final List<T> options;
+  final bool freeForm;
 
-  const TraitWithParameter(String id, String name, this.options, {bool freeForm= false}): super(id,name, freeForm: freeForm);
+  const TraitWithParameter(String id, String name, {this.options, this.freeForm= false}):
+        super(id,name);
 }
 
 class TraitParameterInstance<T> extends ATrait {
@@ -87,8 +94,11 @@ class TraitSet extends DelegatingMap<ATrait, TraitOptions> {
 }
 
 const Trait connections = const Trait("connections","Connections");
-const Trait compulsions = const Trait("compulsions","Compulsions");
-const Trait naturalAptitude = const TraitWithParameter<Skill>("naturalAptitude"," Natural Aptitude", allSkills);
+const Trait compulsions = const TraitWithParameter<String>("compulsions","Compulsions", freeForm: true);
+const TraitParameterInstance compulsionHatredOfDraconis =
+    const TraitParameterInstance<String>(compulsions, "Hatred of Draconis Combine");
+
+const Trait naturalAptitude = const TraitWithParameter<Skill>("naturalAptitude"," Natural Aptitude", options: allSkills);
 
 
 const List<Trait> allTraits = <Trait>[connections, compulsions, naturalAptitude];
