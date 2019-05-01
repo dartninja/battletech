@@ -44,7 +44,9 @@ class Character {
     for (Attribute attr in allAttributes) {
       output.addXP(attr, 100);
     }
-    for(var package in lifePackages) {
+    for(int i = 0; i<lifePackages.length; i++) {
+      var package = lifePackages[i];
+      var options = lifePackageOptions[i];
       if (package ?.bonusAttributes != null) {
         for (Attribute attr in package .bonusAttributes.keys) {
           output.addXP(attr, package .bonusAttributes[attr]);
@@ -62,12 +64,15 @@ class Character {
       output.addXP(startingSecondaryLanguage, 20);
     output.addXP(perception, 10);
 
-    for(var package in lifePackages) {
+    for(int i = 0; i<lifePackages.length; i++) {
+      var package = lifePackages[i];
+      var options = lifePackageOptions[i];
+
       if (package?.bonusSkills != null) {
         for (var skill in package .bonusSkills.keys) {
           if (skill.requiresChoice) {
-            if (affiliationOptions.selectedSkills.containsKey(skill)) {
-              output.addXP(affiliationOptions.selectedSkills[skill],
+            if (options.selectedSkills.containsKey(skill)) {
+              output.addXP(options.selectedSkills[skill],
                   package .bonusSkills[skill]);
             }
           } else {
@@ -79,18 +84,18 @@ class Character {
     return output;
   }
 
-  final SkillSet _manualSkills = new SkillSet();
-
   TraitSet get traits{
     TraitSet output = new TraitSet();
 
-    for(var package in lifePackages) {
+    for(int i = 0; i<lifePackages.length; i++) {
+      var package = lifePackages[i];
+      var options = lifePackageOptions[i];
       if (package ?.bonusTraits != null) {
         for (var trait in package .bonusTraits.keys) {
           if (trait is TraitChoice) {
-            if (affiliationOptions.selectedTraits.containsKey(trait)) {
-              output.addXP(affiliationOptions.selectedTraits[trait],
-                  package .bonusTraits[trait]);
+            if (options.selectedTraits.containsKey(trait)) {
+              output.addXP(options.selectedTraits[trait],
+                  package.bonusTraits[trait]);
             }
           } else if (trait is Trait) {
             output.addXP(trait, package .bonusTraits[trait]);
@@ -109,8 +114,9 @@ class Character {
 
   Map<String,dynamic> toJson() => {
     _ageField: age,
-    _packagesField: lifePackages,
+ //   _packagesField: lifePackages,
   };
+
   static const String _ageField = "age";
   static const String _packagesField = "packages";
 }

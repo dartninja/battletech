@@ -9,6 +9,9 @@ class Package {
   final String id;
   final String name;
 
+//  final int stage;
+  final bool repeatable;
+
   final int cost;
 
   final List<Package> requiredPackages;
@@ -21,7 +24,11 @@ class Package {
       {this.requiredPackages=const[],
         this.bonusAttributes=const{},
         this.bonusSkills=const {},
-        this.bonusTraits = const {}});
+        this.bonusTraits = const {},
+        this.repeatable = false
+      });
+
+  String toString() => this.name;
 }
 
 
@@ -71,3 +78,7 @@ const Package draconisMarch = const Package(
   bonusSkills: { arts: 10}
 );
 
+const List<Package> allPackages = const <Package>[
+  davionAffiliation,
+  draconisMarch
+];

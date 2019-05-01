@@ -1,7 +1,76 @@
+<div class="mdc-card mdc-card--outlined demo-size"
+     *ngFor="let package of char.lifePackages; let i = index">
 
+    <div class="demo-card__primary">
+        <h2 class="demo-card__title">{{package.name}}</h2>
+        <h3 class="demo-card__subtitle">by Kurt Wagner</h3>
+    </div>
+    <div class="demo-card__secondary">
+        <div *ngFor="let attr of package.bonusAttributes.keys">
+            {{attr}}: {{package.bonusAttributes[attr]}}XP
+        </div>
+        <div *ngFor="let skill of package.bonusSkills.keys">
+            <div *ngIf="!skill.requiresChoice">
+                {{skill}}: {{package.bonusSkills[skill]}}XP
+            </div>
+            <div *ngIf="skill.requiresChoice">
+                <skill-picker [skill]="skill"></skill-picker>{{package.bonusSkills[skill]}}XP
+            </div>
+        </div>
+    </div>
+    <div class="mdc-card__actions">
+        <div class="mdc-card__action-buttons">
+        </div>
+        <div class="mdc-card__action-icons">
+            <material-button (trigger)="removePackage(i)" icon>
+                <material-icon icon="delete"></material-icon>
+            </material-button>
+        </div>
+    </div>
+</div>
 
-<material-dropdown-select *ngIf="showSubSkillDropDown"
-    buttonText="{{subSkill?.toString()??'Select...'}}"
-    [(selection)]="subSkill"
-    [options]="skill.subSkills">
-</material-dropdown-select>
+<div>
+<material-dropdown-select
+            buttonText="{{selectedPackage??'Select...'}}"
+            [(selection)]="selectedPackage"
+            [options]="availablePackages">
+    </material-dropdown-select>
+    <material-button (trigger)="addPackage">Add</material-button>
+</div>
+
+    <!--
+        <material-dropdown-select
+                buttonText="{{selectedAffiliation?.name??'Select...'}}"
+                [(selection)]="selectedAffiliation"
+                [options]="affiliations">
+        </material-dropdown-select>
+        <tr  *ngIf="showSecondaryLanguage"><td>
+            <h3>Secondary Language</h3>
+            <material-dropdown-select
+                    buttonText="{{char.startingSecondaryLanguage?.fullName??'Select...'}}"
+                    [(selection)]="char.startingSecondaryLanguage"
+                    [options]="languages">
+            </material-dropdown-select>
+        </td></tr>
+        <tr><td>
+            <div *ngFor="let choice  of affiliationTraitChoices">
+
+                <material-dropdown-select
+                        buttonText="{{char.affiliationOptions.selectedTraits[choice]?.toString()??'Select a trait'}}"
+                        [(selection)]="char.affiliationOptions.selectedTraits[choice]"
+                        [options]="choice.choices" >
+                </material-dropdown-select>
+            </div>
+        </td></tr>
+        <tr *ngIf="showSubAffiliation"><td >
+
+            <h2>Sub Affiliation</h2>
+            <material-dropdown-select
+                    buttonText="{{char.subAffiliation?.name??'Select a sub affiliation'}}"
+                    [(selection)]="char.subAffiliation"
+                    [options]="subAffiliations" >
+            </material-dropdown-select>
+
+        </td></tr>
+    -->
+

@@ -14,7 +14,7 @@
 <table>
     <tr><th>Skills</th><th>Level</th><th>XP</th></tr>
     <tr *ngFor="let skill of char.skills">
-        <th style="text-align:left;">{{skill?.fullName}}</th>
+        <th style="text-align:left;">{{skill}}</th>
         <td>{{skill?.calculateLevel(char.learningSpeed)}}</td>
         <td>{{skill.xp}}</td>
     </tr>

@@ -3,14 +3,18 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 import 'package:angular_forms/angular_forms.dart';
-import '../../skills.dart';
+import '../../character.dart';
+import '../../origins.dart';
+import '../skill_picker/skill_picker.dart';
 
 // AngularDart info: https://webdev.dartlang.org/angular
 // Components info: https://webdev.dartlang.org/components
 
 @Component(
   selector: 'package-picker',
-  styleUrls: ['package_picker.css'],
+  styleUrls: [
+    'package:angular_components/css/mdc_web/card/mdc-card.scss.css',
+    'package_picker.css'],
   templateUrl: 'package_picker.html',
   providers: [materialProviders],
   directives: [
@@ -19,43 +23,42 @@ import '../../skills.dart';
     formDirectives,
     materialInputDirectives,
     MaterialDropdownSelectComponent,
-    MaterialButtonComponent
+    MaterialButtonComponent,
+    SkillPickerComponent
   ],
 )
 class PackagePickerComponent {
 
-  @Input()
-  ASkill choice;
+  @Input("character")
+  Character char;
 
-  SubSkill _subSkill;
 
-  SubSkill get subSkill {
-    if(choice is SubSkill) {
-      return choice;
-    } else {
-      return _subSkill;
-    }
+  Package selectedPackage;
+
+  void addPackage() {
+    if(selectedPackage==null)
+      return;
+
+    char.lifePackageOptions.add(new PackageOptions());
+    char.lifePackages.add(selectedPackage);
+    selectedPackage=null;
+  }
+  void removePackage(int i) {
+    char.lifePackages.removeRange(i, char.lifePackages.length);
+    char.lifePackageOptions.removeRange(i, char.lifePackageOptions.length);
   }
 
-  set subSkill(SubSkill value) {
-    _subSkill = value;
-  }
-
-  Skill get skill {
-    if(choice is Skill) {
-      return choice;
-    } else if(choice is SubSkill) {
-      return (choice as SubSkill).skill;
-    }
-    return null;
-  }
-
-  bool get showSubSkillDropDown => skill?.subSkills?.isNotEmpty??false;
-
-
-  @Output()
-  SkillInstance selected;
-
-
+  List<Package> get availablePackages => new List<Package>.from(
+      allPackages.where((e) {
+        if(!e.repeatable&&char.lifePackages.contains(e)) {
+          return false;
+        }
+        for(var requirement in e.requiredPackages) {
+          if(!char.lifePackages.contains(requirement)) {
+            return false;
+          }
+        }
+        return true;
+      }));
 
 }

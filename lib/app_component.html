@@ -10,49 +10,8 @@
 </table>-->
 <material-button (trigger)="resetButtonTrigger">Reset</material-button>
 <material-tab-panel class="tab-panel" [activeTabIndex]="0">
-    <material-tab label="Biography">
-        <table>
-            <tr><td>
-                <h2>Affiliation</h2>
-            <material-dropdown-select
-                buttonText="{{selectedAffiliation?.name??'Select...'}}"
-                [(selection)]="selectedAffiliation"
-                [options]="affiliations">
-            </material-dropdown-select>
-            </td></tr>
-            <tr  *ngIf="showSecondaryLanguage"><td>
-            <h3>Secondary Language</h3>
-            <material-dropdown-select
-                    buttonText="{{char.startingSecondaryLanguage?.fullName??'Select...'}}"
-                    [(selection)]="char.startingSecondaryLanguage"
-                    [options]="languages">
-            </material-dropdown-select>
-            </td></tr>
-            <tr><td>
-
-            <div *ngFor="let choice  of affiliationTraitChoices">
-
-                <material-dropdown-select
-                        buttonText="{{char.affiliationOptions.selectedTraits[choice]?.toString()??'Select a trait'}}"
-                        [(selection)]="char.affiliationOptions.selectedTraits[choice]"
-                        [options]="choice.choices" >
-                </material-dropdown-select>
-            </div>
-            </td></tr>
-            <tr *ngIf="showSubAffiliation"><td >
-
-            <h2>Sub Affiliation</h2>
-        <material-dropdown-select
-                buttonText="{{char.subAffiliation?.name??'Select a sub affiliation'}}"
-                [(selection)]="char.subAffiliation"
-                [options]="subAffiliations" >
-        </material-dropdown-select>
-
-            </td></tr>
-
-
-        </table>
-
+    <material-tab label="Packages">
+        <package-picker [character]="char"></package-picker>
     </material-tab>
     <material-tab label="Sheet">
         <character-sheet [character]="char"></character-sheet>

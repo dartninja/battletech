@@ -104,7 +104,7 @@ class SubSkill<T> extends ASkill {
   final Skill<T> skill;
   final T subSkill;
 
-  bool get requiresChoice => skill.requiresChoice;
+  bool get requiresChoice => false;
 
 
   bool get tiered => skill.tiered;

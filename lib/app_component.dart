@@ -26,45 +26,18 @@ import 'src/components/components.dart';
     MaterialTabPanelComponent,
     MaterialDropdownSelectComponent,
     MaterialButtonComponent,
-    SkillPickerComponent,
-    CharacterSheetComponent
+    CharacterSheetComponent,
+    PackagePickerComponent
   ],
 )
 class AppComponent {
   Character char = new Character();
 
-  List<Affiliation> get affiliations =>
-      new List<Affiliation>.from(allAffiliations.keys);
-
-  List<TraitChoice> get affiliationTraitChoices =>
-      new List.from(selectedAffiliation?.bonusTraits?.keys
-          ?.where((e) => e is TraitChoice)??
-      []);
-
-
-
-  bool get showSubAffiliation => selectedAffiliation != null;
-  List<SubAffiliation> get subAffiliations =>
-      allAffiliations[selectedAffiliation];
-
-  bool get showSecondaryLanguage =>selectedAffiliation != null;
-  List<ASkill> get languages => new List()
-    ..addAll(selectedAffiliation.secondaryLanguages)
-    ..add(languageEnglish);
-
-  Affiliation _selectedAffiliation;
-  Affiliation get selectedAffiliation =>
-      char.subAffiliation?.affiliation ?? _selectedAffiliation;
-  set selectedAffiliation(Affiliation aff) {
-    _selectedAffiliation = aff;
-    char.subAffiliation = null;
-  }
 
   JsonEncoder _encoder = new JsonEncoder.withIndent('   ');
   String get exportData =>  _encoder.convert(char);
 
   void resetButtonTrigger() {
-    _selectedAffiliation = null;
     char = new Character();
   }
 }
